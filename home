@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Meu Tumblr</title>
+    <style>
+        body {
+            background-color: #311B5D;
+        }
+        img {
+            -webkit-user-drag: none;
+            -khtml-user-drag: none;
+            -moz-user-drag: none;
+            -o-user-drag: none;
+            user-drag: none;
+        }
+    </style>
+</head>
+<body>
+    <div style="text-align: center;">
+        <img id="myImg" src="https://64.media.tumblr.com/46062a167ab58867b14c013273eeffd5/8bf6f90376b1cedf-7e/s500x750/5256443bdb0867f119e936ba41d1383ba7bd382b.gifv" alt="GIF">
+    </div>
+    <audio id="myAudio" autoplay>
+        <source id="mySource" src="" type="audio/mp4">
+    </audio>
+    <script>
+        function shuffle(array) {
+            for (var i = array.length - 1; i > 0; i--) {
+                var j = Math.floor(Math.random() * (i + 1));
+                var temp = array[i];
+                array[i] = array[j];
+                array[j] = temp;
+            }
+        }
+
+        var audio = document.getElementById("myAudio");
+        var source = document.getElementById("mySource");
+        var img = document.getElementById("myImg");
+        var audios = [
+            "https://va.media.tumblr.com/tumblr_ry63qsIy5E1a736ij.mp4",
+            "https://va.media.tumblr.com/tumblr_ry63t22zUN1a736ij.mp4",
+            "https://va.media.tumblr.com/tumblr_ry63xkeG5E1a736ij.mp4",
+            "https://va.media.tumblr.com/tumblr_ry643i1jWe1a736ij.mp4",
+            "https://va.media.tumblr.com/tumblr_ry6480NenY1a736ij.mp4",
+            "https://va.media.tumblr.com/tumblr_ry65fsrUmM1a736ij.mp4",
+            "https://va.media.tumblr.com/tumblr_ry6608R3ku1a736ij.mp4",
+            "https://va.media.tumblr.com/tumblr_ry6a83DqEv1a736ij.mp4",
+            "https://va.media.tumblr.com/tumblr_ry6agwJ7rY1a736ij.mp4",
+            "https://va.media.tumblr.com/tumblr_ry6anwNHr01a736ij.mp4",
+            "https://va.media.tumblr.com/tumblr_ry6axdnO5h1a736ij.mp4",
+            "https://va.media.tumblr.com/tumblr_ry6b3sJKU11a736ij.mp4",
+            "https://va.media.tumblr.com/tumblr_ry6bnhM3y51a736ij.mp4",
+            "https://va.media.tumblr.com/tumblr_ry6buuPXBF1a736ij.mp4",
+            "https://va.media.tumblr.com/tumblr_ry6cbmrBus1a736ij.mp4"
+        ];
+        shuffle(audios);
+        var index = 0;
+        source.src = audios[index];
+        audio.load();
+        audio.volume = 0.7;
+        audio.addEventListener("ended", function() {
+            index = (index + 1) % audios.length;
+            source.src = audios[index];
+            audio.load();
+            audio.play();
+        });
+        img.addEventListener("click", function(event) {
+            var x = event.offsetX;
+            var y = event.offsetY;
+            if (x >= 161 && x <= 181 && y >= 350 && y <= 370) {
+                if (audio.paused) {
+                    audio.play();
+                    img.src = "https://64.media.tumblr.com/46062a167ab58867b14c013273eeffd5/8bf6f90376b1cedf-7e/s500x750/5256443bdb0867f119e936ba41d1383ba7bd382b.gifv";
+                } else {
+                    audio.pause();
+                    img.src = "https://64.media.tumblr.com/c42db6586316359e227e2aff5fae9abb/8660013a1f02b66a-b8/s500x750/817def8c1669e379b20fdf2c3c11ffd6e86b74d5.gifv";
+                }
+            }
+        });
+    </script>
+</body>
+</html>
